@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Validation Form</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .form_group {
+            margin-bottom: 20px;
+        }
+
+        .sub_title {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form_style {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        #message {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #message h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+
+        #message p {
+            margin: 5px 0;
+        }
+
+        .invalid {
+            color: red;
+        }
+
+        .valid {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form_area">
+            <h4 class="title">Register Now</h4>
+            <form>
+                <div class="form_group">
+                    <label for="email" class="sub_title">Email</label>
+                    <input type="email" id="email" class="form_style" required />
+                </div>
+                <div class="form_group">
+                    <label for="password" class="sub_title">Password</label>
+                    <input type="password" id="password" class="form_style" required />
+                </div>
+                <div>
+                    <button type="submit" class="btn">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="message">
+        <h3>Password must contain the following:</h3>
+        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+        <p id="number" class="invalid">A <b>number</b></p>
+        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+    </div>
+
+    <script>
+        const password = document.getElementById("password");
+        const letter = document.getElementById("letter");
+        const capital = document.getElementById("capital");
+        const number = document.getElementById("number");
+        const length = document.getElementById("length");
+
+        // Listen for when the user types in the password field
+        password.addEventListener("input", function () {
+            // Validate lowercase letters
+            const lowerCaseLetters = /[a-z]/g;
+            if (password.value.match(lowerCaseLetters)) {
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+            }
+            // Validate capital letters
+            const upperCaseLetters = /[A-Z]/g;
+            if (password.value.match(upperCaseLetters)) {
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+            }
+
+            // Validate numbers
+            const numbers = /[0-9]/g;
+            if (password.value.match(numbers)) {
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+
+            // Validate length
+            if (password.value.length >= 8) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+            }
+        });
+    </script>
+</body>
+</html>
+
+    
